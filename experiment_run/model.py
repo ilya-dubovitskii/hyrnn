@@ -44,7 +44,7 @@ class RNNBase(nn.Module):
                 )
         else:
             raise NotImplementedError(
-                "Unsuported embedding type: {0}".format(embedding_type)
+                "Unsupported embedding type: {0}".format(embedding_type)
             )
         self.embedding_type = embedding_type
         if decision_type == "eucl":
@@ -60,7 +60,7 @@ class RNNBase(nn.Module):
             self.logits = hyrnn.MobiusDist2Hyperplane(project_dim, num_classes)
         else:
             raise NotImplementedError(
-                "Unsuported decision type: {0}".format(decision_type)
+                "Unsupported decision type: {0}".format(decision_type)
             )
         self.ball = geoopt.PoincareBall(c)
         if use_distance_as_feature:
@@ -86,7 +86,7 @@ class RNNBase(nn.Module):
         elif cell_type == "hyp_gru":
             self.cell = functools.partial(hyrnn.MobiusGRU, c=c)
         else:
-            raise NotImplementedError("Unsuported cell type: {0}".format(cell_type))
+            raise NotImplementedError("Unsupported cell type: {0}".format(cell_type))
         self.cell_type = cell_type
 
         self.cell_source = self.cell(embedding_dim, self.hidden_dim, self.num_layers)

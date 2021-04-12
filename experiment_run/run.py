@@ -8,8 +8,8 @@ import torch.utils.data
 import torch.nn as nn
 import geoopt
 import prefix_dataset
-import model, runner
-
+import experiment_run.model as model
+import experiment_run.runner as runner
 from catalyst.dl.callbacks import PrecisionCallback
 
 
