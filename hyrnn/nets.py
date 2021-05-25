@@ -27,7 +27,7 @@ def mobius_linear(
         output = manifold.mobius_add(output, bias)
     if nonlin is not None:
         output = manifold.mobius_fn_apply(nonlin, output)
-    output = manifold.project(output)
+    # output = manifold.project(output)
     return output
 
 
