@@ -148,6 +148,7 @@ class MobiusLinear(torch.nn.Linear):
         self.hyperbolic_bias = hyperbolic_bias
         self.hyperbolic_input = hyperbolic_input
         self.nonlin = nonlin
+        self.reset_parameters()
 
     def forward(self, input):
         return mobius_linear(
@@ -167,6 +168,12 @@ class MobiusLinear(torch.nn.Linear):
             info = ", hyperbolic_bias={}".format(self.hyperbolic_bias)
         return info
 
+    @torch.no_grad()
+    def reset_parameters(self):
+        torch.nn.init.eye_(self.weight)
+        self.weight.add_(torch.rand_like(self.weight).mul_(1e-3))
+        if self.bias is not None:
+            self.bias.zero_()
 
 class MobiusDist2Hyperplane(torch.nn.Module):
     def __init__(self, in_features, out_features, c=1.0):
